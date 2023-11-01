@@ -1,4 +1,4 @@
-module rpc_defs
+module github.com/jeffOSRocko/rest_grpc/rpc_defs
 
 go 1.20
 
