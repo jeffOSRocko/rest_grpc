@@ -1,0 +1,33 @@
+syntax = "proto3";
+package keyvalue;
+option go_package = "./keyvalue";
+
+message KeyValue {
+    string key = 1;
+    string val = 2;
+}
+
+message Key {
+    string key = 1;
+}
+
+message Val {
+    string val = 1;
+}
+
+message KeyValError {
+    string message = 1;
+}
+
+message GetAllRequest {}
+message GetAllResponse { 
+    repeated KeyValue keyvals = 1;
+}
+
+service KeyValueService {
+    rpc GetVal(Key) returns (KeyValue) {}
+    rpc AddVal(KeyValue) returns (KeyValue) {}
+    rpc DeleteVal(Key) returns (KeyValue) {}
+    rpc ModifyVal(KeyValue) returns (KeyValue) {}
+    rpc GetAll(GetAllRequest) returns (GetAllResponse) {}
+}
