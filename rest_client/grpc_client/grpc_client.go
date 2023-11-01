@@ -4,7 +4,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	rpc_defs "rpc_defs/src/keyvalue"
+	rpc_defs "github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 )
 
 func SetupGRPCClient() (*grpc.ClientConn, *rpc_defs.KeyValueServiceClient, error) {

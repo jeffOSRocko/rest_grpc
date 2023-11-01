@@ -5,8 +5,7 @@ import (
 	"log"
 	"net"
 
-	"rpc_defs/src/keyvalue"
-
+	"github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

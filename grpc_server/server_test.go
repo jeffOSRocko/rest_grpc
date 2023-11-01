@@ -2,9 +2,9 @@ package main
 
 import (
 	"context"
-	"rpc_defs/src/keyvalue"
 	"testing"
 
+	"github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 	"github.com/stretchr/testify/assert"
 )
 

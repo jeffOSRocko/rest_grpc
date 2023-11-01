@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 
-	rpc_defs "rpc_defs/src/keyvalue"
+	rpc_defs "github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 
 	"github.com/gin-gonic/gin"
 )
