@@ -1,4 +1,4 @@
-# rest api that talks server using gRPC
+# rest service that hosts a rest api that in turn talks to another service using gRPC
 
 There are two services, a client and a server and a shared rpc_defs project containing the shared proto definition and generated classes
 
