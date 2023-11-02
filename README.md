@@ -3,7 +3,7 @@
 There are two services, a client and a server and a shared rpc_defs project containing the shared proto definition and generated classes
 
 ## docker and docker-compose
-The two services - grpc_server and reset_client have their own docker files for generating docker images.
+The two services - grpc_server and rest_client have their own docker files for generating docker images.
 Each image was generated using 'docker build -t <service_name> .' 
    - substitute 'rest_client' and 'grpc_server' for each service
 
