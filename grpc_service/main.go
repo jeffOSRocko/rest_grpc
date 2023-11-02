@@ -16,10 +16,21 @@ type KeyValue struct {
 	Value string
 }
 
+// Create a local struct that allows us to
+// implement all the necessary functions to satisfy
+// the gRPC interface calls
 type Server struct {
+	// Maintain stored key value pairs in memory
+	// Ideally this be a database or interface to
+	// cloud storage
 	stored_vals map[string]string
 }
 
+// Initialize the server and optionally add an initial
+// value to the store - not really production quality
+// but super helpful when building up the code and testing
+// with postman to save the initial add step.
+// For production I would drop the initial value
 func (s *Server) Init(addInitialValue bool) {
 	s.stored_vals = make(map[string]string)
 
@@ -128,6 +139,8 @@ func (s *Server) ModifyVal(ctx context.Context, keyval *keyvalue.KeyValue) (*key
 }
 
 func main() {
+	// Create out gRPC listener on port 9000 and
+	// inject our "Server" into the grpcServer
 	listen, err := net.Listen("tcp", ":9000")
 	if err != nil {
 		log.Fatalf("GRPC_SERVICE: Failed to listen on port 9000: %v", err)

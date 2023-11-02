@@ -13,4 +13,7 @@ The gRPC service is hosted at port 9000 and has the following endpoints
 ## docker image
 builddocker.sh shell script will build the docker image
 
+## testing
+Postman was used to manually test all gRPC enpoints. 
 
+Unit tests can be executed by executing: go test ./...
