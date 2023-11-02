@@ -3,5 +3,5 @@ go 1.20
 use (
 	./rpc_defs
 	./grpc_server
-	./rest_client
+	./rest_service
 )

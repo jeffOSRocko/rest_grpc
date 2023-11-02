@@ -1,11 +1,11 @@
 # rest service that hosts a rest api that in turn talks to another service using gRPC
 
-There are two services, a client and a server and a shared rpc_defs project containing the shared proto definition and generated classes
+There are two services, a rest service and a gRPC service - they both share an rpc_defs project containing the shared proto definition and generated classes
 
 ## docker and docker-compose
-The two services - grpc_server and rest_client have their own docker files for generating docker images.
+The two services - grpc_server and rest_server have their own docker files for generating docker images.
 Each image was generated using 'docker build -t <service_name> .' 
-   - substitute 'rest_client' and 'grpc_server' for each service
+   - substitute 'rest_server' and 'grpc_server' for each service
 
 The docker-compose.yaml file can be used to easily bring up and down each container by running
    'docker-compose up' and 'docker-compose down' (in this folder where docker-compose.yaml is located)
@@ -16,8 +16,8 @@ Contains the proto file and generated .go files
 ## grpc_server
 grpc server that takes in keyvalue pairs and stores then in an in-memory dictionary
 
-## rest_client
-rest client that has rest endpoints to accept POST, PATCH, DELETE and GET requests that get passed along to the grpc_server for processing
+## rest_server
+rest server that has rest endpoints to accept POST, PATCH, DELETE and GET requests that get passed along to the grpc_server for processing
 
 ## testing
 Postman was used for manual testing of each service as they were developed

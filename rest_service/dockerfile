@@ -21,7 +21,7 @@ ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
 ENV GO111MODULE=on
-RUN go build -o /bin/rest_client .
+RUN go build -o /bin/rest_service .
 
 # Optional:
 # To bind to a TCP port, runtime parameters must be supplied to the docker command.
@@ -32,4 +32,4 @@ EXPOSE 8080
 EXPOSE 9000
 
 # Run
-CMD ["/bin/rest_client"]
+CMD ["/bin/rest_service"]

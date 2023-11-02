@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"rest_client/grpc_client"
-	"rest_client/rest_server"
+	"github.com/jeffOSRocko/rest_service/grpc_client"
+	"github.com/jeffOSRocko/rest_service/rest_server"
 
 	"github.com/gin-gonic/gin"
 )

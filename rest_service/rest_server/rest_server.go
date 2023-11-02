@@ -17,7 +17,7 @@ type idVal struct {
 }
 
 func GetAllIDVals(context *gin.Context) {
-	log.Printf("REST_CLIENT: Received GetAllIDVals")
+	log.Printf("REST_SERVICE: Received GetAllIDVals")
 
 	foo := *RPCClient
 	resp, err := foo.GetAll(context, &rpc_defs.GetAllRequest{})
@@ -31,7 +31,7 @@ func GetAllIDVals(context *gin.Context) {
 }
 
 func AddIdVal(context *gin.Context) {
-	log.Printf("REST_CLIENT: AddIdVal")
+	log.Printf("REST_SERVICE: AddIdVal")
 
 	var newIdVal idVal
 
@@ -43,7 +43,7 @@ func AddIdVal(context *gin.Context) {
 	resp, err := foo.AddVal(context, &rpc_defs.KeyValue{Key: newIdVal.Key, Val: newIdVal.Val})
 
 	if err != nil {
-		context.IndentedJSON(http.StatusOK, "REST_CLIENT: AddIdVal Failed. Error: "+err.Error())
+		context.IndentedJSON(http.StatusOK, "REST_SERVICE: AddIdVal Failed. Error: "+err.Error())
 
 		return
 	}
@@ -51,7 +51,7 @@ func AddIdVal(context *gin.Context) {
 }
 
 func ModifyIDVal(context *gin.Context) {
-	log.Printf("REST_CLIENT: ModifyIdVal")
+	log.Printf("REST_SERVICE: ModifyIdVal")
 
 	var newIdVal idVal
 
@@ -63,7 +63,7 @@ func ModifyIDVal(context *gin.Context) {
 	resp, err := foo.ModifyVal(context, &rpc_defs.KeyValue{Key: newIdVal.Key, Val: newIdVal.Val})
 
 	if err != nil {
-		context.IndentedJSON(http.StatusOK, "REST_CLIENT: ModifyIdVal Failed. Error: "+err.Error())
+		context.IndentedJSON(http.StatusOK, "REST_SERVICE: ModifyIdVal Failed. Error: "+err.Error())
 
 		return
 	}
@@ -71,7 +71,7 @@ func ModifyIDVal(context *gin.Context) {
 }
 
 func GetIDVal(context *gin.Context) {
-	log.Printf("REST_CLIENT: GetIdVal")
+	log.Printf("REST_SERVICE: GetIdVal")
 
 	id := context.Param("key")
 
@@ -87,7 +87,7 @@ func GetIDVal(context *gin.Context) {
 }
 
 func DeleteIDVal(context *gin.Context) {
-	log.Printf("REST_CLIENT: DeleteIdVal")
+	log.Printf("REST_SERVICE: DeleteIdVal")
 
 	id := context.Param("key")
 

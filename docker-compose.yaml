@@ -4,7 +4,7 @@ services:
     image: grpc_server:latest
     ports:
       - "9000:9000"
-  rest_client:
-    image: rest_client:latest
+  rest_server:
+    image: rest_server:latest
     ports:
       - "8080:8080"
