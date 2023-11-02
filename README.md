@@ -36,3 +36,5 @@ Postman was used for manual testing of each service as they were developed
        localhost:9000/GetIDVal
        localhost:9000/DeleteVal
        localhost:9000/ModifyVal 
+
+go test ./... will execute all unit tests within each service
