@@ -1,10 +1,10 @@
 version: '1'
 services:
-  grpc_server:
-    image: grpc_server:latest
+  grpc_service:
+    image: grpc_service:latest
     ports:
       - "9000:9000"
-  rest_server:
-    image: rest_server:latest
+  rest_service:
+    image: rest_service:latest
     ports:
       - "8080:8080"
