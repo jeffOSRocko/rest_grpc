@@ -10,4 +10,7 @@ The gRPC service is hosted at port 9000 and has the following endpoints
    localhost:9000/DeleteVal
    localhost:9000/ModifyVal   
 
+## docker image
+builddocker.sh shell script will build the docker image
+
 
