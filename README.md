@@ -20,7 +20,13 @@ grpc service that takes in keyvalue pairs and stores then in an in-memory dictio
 rest service that has rest endpoints to accept POST, PATCH, DELETE and GET requests that get passed along to the grpc_service for processing
 
 ## testing
+Debug testing was accomplished by running the two services manually. 
+launch.config profiles were added to vscode to allow for debugging
+    ./grpc_service/go run main.go
+    ./rest_service/go run main.go
+
 Postman was used for manual testing of each service as they were developed
+My public postman collection is here: https://www.postman.com/jeffos/workspace/rest-grpc
    - Two collections were created: one to probe the rest API service and one to probe the gRPC service
      each collection contained http/gRPC calls for each exposed endpoint
      http
@@ -38,3 +44,8 @@ Postman was used for manual testing of each service as they were developed
        localhost:9000/ModifyVal 
 
 go test ./... will execute all unit tests within each service
+
+## docker testing
+The docker containers get created successfully and the docker-compose script runs both containers.
+TODO: As of this writing there is a problem accessing the rest endpoints from the rest_service container.
+The grpc_service container is testable/accessible via postman
