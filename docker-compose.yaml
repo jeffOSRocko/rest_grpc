@@ -1,0 +1,10 @@
+version: '1'
+services:
+  grpc_server:
+    image: grpc_server:latest
+    ports:
+      - "9000:9000"
+  rest_client:
+    image: rest_client:latest
+    ports:
+      - "8080:8080"
