@@ -19,16 +19,16 @@ COPY . .
 # https://docs.docker.com/engine/reference/builder/#copy
 COPY *.go ./
 
-FROM docker:dind
-RUN apk add --no-cache go
-RUN go version
+# FROM docker:dind
+# RUN apk add --no-cache go
+# RUN go version
 
 # Build
 ENV CGO_ENABLED=0
 ENV GOOS=linux
 ENV GOARCH=amd64
 ENV GO111MODULE=on
-RUN go build -o ./bin/grpc_server .
+RUN go build -o /bin/grpc_server .
 
 # Optional:
 # To bind to a TCP port, runtime parameters must be supplied to the docker command.
@@ -38,4 +38,4 @@ RUN go build -o ./bin/grpc_server .
 EXPOSE 9000
 
 # Run
-CMD ["./bin/grpc_server"]
+CMD ["/bin/grpc_server"]
