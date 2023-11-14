@@ -14,7 +14,7 @@ import (
 // rest handlers can have access
 func GRPCClientMiddleware(grpc_client *keyvalue.KeyValueServiceClient) gin.HandlerFunc {
 	return func(context *gin.Context) {
-		context.Set("grpcClient", grpc_client)
+		context.Set("grpcClient", *grpc_client)
 		context.Next()
 	}
 }

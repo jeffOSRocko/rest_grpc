@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 	rpc_defs "github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 
 	"github.com/gin-gonic/gin"
@@ -18,7 +17,13 @@ type idVal struct {
 func GetAllIDVals(context *gin.Context) {
 	log.Printf("REST_SERVICE: Received GetAllIDVals")
 
-	grpcClient, exists := context.Value("grpcClient").(keyvalue.KeyValueServiceClient)
+	rawVal := context.Value("grpcClient")
+	if rawVal == nil {
+		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC rawval Client not found"})
+		return
+	}
+
+	grpcClient, exists := rawVal.(rpc_defs.KeyValueServiceClient)
 	if !exists {
 		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC client not found"})
 		return
@@ -41,7 +46,7 @@ func AddIdVal(context *gin.Context) {
 		return
 	}
 
-	grpcClient, exists := context.Value("grpcClient").(keyvalue.KeyValueServiceClient)
+	grpcClient, exists := context.Value("grpcClient").(rpc_defs.KeyValueServiceClient)
 	if !exists {
 		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC client not found"})
 		return
@@ -64,7 +69,7 @@ func ModifyIDVal(context *gin.Context) {
 		return
 	}
 
-	grpcClient, exists := context.Value("grpcClient").(keyvalue.KeyValueServiceClient)
+	grpcClient, exists := context.Value("grpcClient").(rpc_defs.KeyValueServiceClient)
 	if !exists {
 		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC client not found"})
 		return
@@ -83,7 +88,7 @@ func GetIDVal(context *gin.Context) {
 
 	id := context.Param("key")
 
-	grpcClient, exists := context.Value("grpcClient").(keyvalue.KeyValueServiceClient)
+	grpcClient, exists := context.Value("grpcClient").(rpc_defs.KeyValueServiceClient)
 	if !exists {
 		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC client not found"})
 		return
@@ -103,7 +108,7 @@ func DeleteIDVal(context *gin.Context) {
 
 	id := context.Param("key")
 
-	grpcClient, exists := context.Value("grpcClient").(keyvalue.KeyValueServiceClient)
+	grpcClient, exists := context.Value("grpcClient").(rpc_defs.KeyValueServiceClient)
 	if !exists {
 		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC client not found"})
 		return
