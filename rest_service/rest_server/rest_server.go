@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 	rpc_defs "github.com/jeffOSRocko/rest_grpc/rpc_defs/src/keyvalue"
 
 	"github.com/gin-gonic/gin"
@@ -122,10 +123,27 @@ func DeleteIDVal(context *gin.Context) {
 	context.IndentedJSON(http.StatusOK, resp)
 }
 
-func Start(gRPClient *rpc_defs.KeyValueServiceClient) {
+// Inject our gRPC client connection into the context so all
+// rest handlers can have access
+func GRPCClientMiddleware(grpc_client *keyvalue.KeyValueServiceClient) gin.HandlerFunc {
+	return func(context *gin.Context) {
+		context.Set("grpcClient", *grpc_client)
+		context.Next()
+	}
+}
+
+func Start(grpc_client *keyvalue.KeyValueServiceClient) *gin.Engine {
 	router := gin.Default()
 
+	// Inject the gRPC client into the context
+	router.Use(GRPCClientMiddleware(grpc_client))
+
+	// Wire in all the rest endpoints
+	router.GET("/getidval/:key", GetIDVal)
+	router.PATCH("/modifyidval", ModifyIDVal)
 	router.GET("/getallidvals", GetAllIDVals)
-	router.POST("/addidval", AddIdVal)
-	router.Run("localhost:9090")
+	router.DELETE("/deleteidval/:key", DeleteIDVal)
+	router.PUT("/addidval", AddIdVal)
+
+	return router
 }
