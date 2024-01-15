@@ -11,8 +11,8 @@ import (
 // to the caller.
 // The caller is responsible for closing the connection as well as
 // any error handling required by possible returned errors
-func SetupGRPCClient() (*grpc.ClientConn, *rpc_defs.KeyValueServiceClient, error) {
-	conn, err := grpc.Dial("localhost:9000", grpc.WithTransportCredentials(insecure.NewCredentials()))
+func SetupGRPCClient(grpcAddress string) (*grpc.ClientConn, *rpc_defs.KeyValueServiceClient, error) {
+	conn, err := grpc.Dial("host.docker.internal:9000", grpc.WithTransportCredentials(insecure.NewCredentials()))
 
 	if err != nil {
 		return nil, nil, err

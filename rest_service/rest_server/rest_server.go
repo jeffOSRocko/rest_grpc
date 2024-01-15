@@ -20,18 +20,21 @@ func GetAllIDVals(context *gin.Context) {
 
 	rawVal := context.Value("grpcClient")
 	if rawVal == nil {
+		log.Printf("REST_SERVICE GetAllIDVals: failed: context.Value('grpcClient')")
 		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC rawval Client not found"})
 		return
 	}
 
 	grpcClient, exists := rawVal.(rpc_defs.KeyValueServiceClient)
 	if !exists {
+		log.Printf("REST_SERVICE GetAllIDVals: gRPC client not found")
 		context.IndentedJSON(http.StatusInternalServerError, gin.H{"error": "gRPC client not found"})
 		return
 	}
 	resp, err := grpcClient.GetAll(context, &rpc_defs.GetAllRequest{})
 
 	if err != nil {
+		log.Printf("REST_SERVICE GetAllIDVals: Error: " + err.Error())
 		context.IndentedJSON(http.StatusOK, "Failed to get all IDVals. Error: "+err.Error())
 		return
 	}

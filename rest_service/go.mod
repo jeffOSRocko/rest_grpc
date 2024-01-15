@@ -5,6 +5,8 @@ go 1.20
 require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/jeffOSRocko/rest_grpc/rpc_defs v0.0.0-20231101212255-51768ff4d341
+	github.com/jessevdk/go-flags v1.5.0
+	github.com/sirupsen/logrus v1.9.3
 	google.golang.org/grpc v1.59.0
 )
 
