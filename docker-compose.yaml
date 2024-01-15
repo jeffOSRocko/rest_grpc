@@ -1,0 +1,15 @@
+version: '1'
+services:
+  grpc_service:
+    build: ./grpc_service
+    image: grpc_service:latest
+    ports:
+      - "9000:9000"
+  rest_service:
+    build: ./rest_service
+    image: rest_service:latest
+    ports:
+      - "8080:8080"
+    environment:
+      - GRPC_SERVICE_ADDRESS=host.docker.internal:9000
+      - REST_SERVICE_ADDRESS=0.0.0.0:8080
