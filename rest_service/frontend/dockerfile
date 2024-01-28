@@ -1,0 +1,26 @@
+# Use an official Node.js runtime as a parent image
+FROM node:16
+
+# Set the working directory in the container
+WORKDIR /usr/src/app
+
+# Copy package.json and package-lock.json (or yarn.lock) into the working directory
+COPY package*.json ./
+# If you are using yarn, copy yarn.lock as well
+# COPY package.json yarn.lock ./
+
+# Install project dependencies
+RUN npm install
+# If you are using yarn, use the following command instead
+# RUN yarn install
+
+# Bundle your app's source code inside the Docker image
+COPY . .
+
+# The command to run your app (Vite development server)
+CMD ["npm", "run", "dev", "--", "--host"]
+# If you are using yarn, use the following command instead
+# CMD ["yarn", "dev", "--open"]
+
+# Expose the port the app runs on
+EXPOSE 5173
