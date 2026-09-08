@@ -57,7 +57,7 @@ func GetAllIDVals(context *gin.Context) {
 	resp, err := grpcClient.GetAll(context, &rpc_defs.GetAllRequest{})
 
 	if err != nil {
-		log.Printf("REST_SERVICE GetAllIDVals: Error: " + err.Error())
+		log.Printf("REST_SERVICE GetAllIDVals: Error: %v", err)
 		context.IndentedJSON(http.StatusOK, "Failed to get all IDVals. Error: "+err.Error())
 		return
 	}
